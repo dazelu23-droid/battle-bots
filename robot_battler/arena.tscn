@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://dkn7l8l2g6tmr"]
 
 [ext_resource type="PackedScene" uid="uid://bg22ljljuwvav" path="res://robot_battler/dummy_target.tscn" id="1_5ikrm"]
+[ext_resource type="PackedScene" uid="uid://cosfync8gvnmx" path="res://robot_battler/player_robot.tscn" id="2_yfry8"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6hmv2"]
 albedo_color = Color(0.2901961, 0.2901961, 0.30980393, 1)
@@ -110,3 +111,5 @@ light_energy = 1.2
 
 [node name="DummyTarget1" parent="." unique_id=806824294 instance=ExtResource("1_5ikrm")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+
+[node name="PlayerRobot" parent="." unique_id=1586882751 instance=ExtResource("2_yfry8")]
