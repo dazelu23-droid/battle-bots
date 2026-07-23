@@ -1,0 +1,107 @@
+[gd_scene format=3 uid="uid://dkn7l8l2g6tmr"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6hmv2"]
+albedo_color = Color(0.2901961, 0.2901961, 0.30980393, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_5ikrm"]
+size = Vector3(40, 0.2, 40)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_yfry8"]
+size = Vector3(40, 0.2, 40)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2frq"]
+albedo_color = Color(0.16862746, 0.16862746, 0.1882353, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_gimnn"]
+size = Vector3(41, 3, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nsb75"]
+size = Vector3(41, 3, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bndse"]
+albedo_color = Color(0.16862746, 0.16862746, 0.1882353, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_phhs5"]
+size = Vector3(41, 3, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_y62jr"]
+size = Vector3(41, 3, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fwh5e"]
+albedo_color = Color(0.16862746, 0.16862746, 0.1882353, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_ge4v2"]
+size = Vector3(1, 3, 41)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_g5wf1"]
+size = Vector3(1, 3, 41)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7q114"]
+albedo_color = Color(0.16862746, 0.16862746, 0.1882353, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_kwpvk"]
+size = Vector3(1, 3, 41)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_2xojr"]
+size = Vector3(1, 3, 41)
+
+[node name="Arena" type="Node3D" unique_id=909147313]
+
+[node name="Floor" type="StaticBody3D" parent="." unique_id=1603103511]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor" unique_id=30092438]
+material_override = SubResource("StandardMaterial3D_6hmv2")
+mesh = SubResource("BoxMesh_5ikrm")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor" unique_id=374605769]
+shape = SubResource("BoxShape3D_yfry8")
+
+[node name="WallNorth" type="StaticBody3D" parent="." unique_id=657774104]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, -20.5)
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallNorth" unique_id=1615878038]
+material_override = SubResource("StandardMaterial3D_y2frq")
+mesh = SubResource("BoxMesh_gimnn")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallNorth" unique_id=1016286237]
+shape = SubResource("BoxShape3D_nsb75")
+
+[node name="WallSouth" type="StaticBody3D" parent="." unique_id=1199444637]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 20.5)
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallSouth" unique_id=1339170166]
+material_override = SubResource("StandardMaterial3D_bndse")
+mesh = SubResource("BoxMesh_phhs5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallSouth" unique_id=246564519]
+shape = SubResource("BoxShape3D_y62jr")
+
+[node name="WallEast" type="StaticBody3D" parent="." unique_id=1732178279]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 1.5, 0)
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallEast" unique_id=989600827]
+material_override = SubResource("StandardMaterial3D_fwh5e")
+mesh = SubResource("BoxMesh_ge4v2")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallEast" unique_id=710017060]
+shape = SubResource("BoxShape3D_g5wf1")
+
+[node name="WallWest" type="StaticBody3D" parent="." unique_id=194176829]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5, 1.5, 0)
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="WallWest" unique_id=567369184]
+material_override = SubResource("StandardMaterial3D_7q114")
+mesh = SubResource("BoxMesh_kwpvk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="WallWest" unique_id=1919691866]
+shape = SubResource("BoxShape3D_2xojr")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1296957427]
+transform = Transform3D(0.8660254, 0.38302222, -0.32139382, 0, 0.64278764, 0.76604444, 0.5, -0.66341394, 0.5566704, 0, 10, 0)
+light_energy = 1.2
