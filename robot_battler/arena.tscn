@@ -113,3 +113,12 @@ light_energy = 1.2
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
 
 [node name="PlayerRobot" parent="." unique_id=1586882751 instance=ExtResource("2_yfry8")]
+
+[node name="DummyTarget2" parent="." unique_id=705823074 instance=ExtResource("1_5ikrm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -6)
+
+[node name="DummyTarget3" parent="." unique_id=1765667809 instance=ExtResource("1_5ikrm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -10)
+
+[node name="DummyTarget4" parent="." unique_id=566851900 instance=ExtResource("1_5ikrm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 3)
