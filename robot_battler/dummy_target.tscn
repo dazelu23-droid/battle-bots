@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://bg22ljljuwvav"]
+
+[ext_resource type="Script" uid="uid://gge132axm68" path="res://robot_battler/dummy_target.gd" id="1_f8s5y"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_kucft"]
+albedo_color = Color(0.7764706, 0.3529412, 0.18039216, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_6nr25"]
+size = Vector3(1, 1.6, 1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ewcay"]
+size = Vector3(1, 1.6, 1)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_in33y"]
+albedo_color = Color(0.1254902, 0.078431375, 0.05882353, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_v4qt0"]
+size = Vector2(1, 0.16)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_ni2o4"]
+albedo_color = Color(0.30588236, 0.8784314, 0.41568628, 1)
+
+[sub_resource type="QuadMesh" id="QuadMesh_jbhyr"]
+size = Vector2(1, 0.16)
+
+[node name="DummyTarget" type="StaticBody3D" unique_id=806824294]
+collision_layer = 4
+collision_mask = 0
+script = ExtResource("1_f8s5y")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=1192063715]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+material_override = SubResource("StandardMaterial3D_kucft")
+mesh = SubResource("BoxMesh_6nr25")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1993666753]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.8, 0)
+shape = SubResource("BoxShape3D_ewcay")
+
+[node name="HealthBar" type="Node3D" parent="." unique_id=1119619337]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 2.2, 0)
+
+[node name="Background" type="MeshInstance3D" parent="HealthBar" unique_id=560385014]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_in33y")
+mesh = SubResource("QuadMesh_v4qt0")
+
+[node name="Fill" type="MeshInstance3D" parent="HealthBar" unique_id=1473032316]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0.01, 0)
+material_override = SubResource("StandardMaterial3D_ni2o4")
+mesh = SubResource("QuadMesh_jbhyr")

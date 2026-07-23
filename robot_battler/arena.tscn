@@ -1,5 +1,7 @@
 [gd_scene format=3 uid="uid://dkn7l8l2g6tmr"]
 
+[ext_resource type="PackedScene" uid="uid://bg22ljljuwvav" path="res://robot_battler/dummy_target.tscn" id="1_5ikrm"]
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6hmv2"]
 albedo_color = Color(0.2901961, 0.2901961, 0.30980393, 1)
 
@@ -105,3 +107,6 @@ shape = SubResource("BoxShape3D_2xojr")
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1296957427]
 transform = Transform3D(0.8660254, 0.38302222, -0.32139382, 0, 0.64278764, 0.76604444, 0.5, -0.66341394, 0.5566704, 0, 10, 0)
 light_energy = 1.2
+
+[node name="DummyTarget1" parent="." unique_id=806824294 instance=ExtResource("1_5ikrm")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)

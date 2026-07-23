@@ -1,0 +1,9 @@
+[gd_scene format=3 uid="uid://cd17i5sh07eps"]
+
+[ext_resource type="Script" uid="uid://wshjr7ca7hfg" path="res://robot_battler/damage_number.gd" id="1_7u6dv"]
+
+[node name="DamageNumber" type="Label3D" unique_id=195508993]
+billboard = 1
+modulate = Color(1, 0.8784314, 0.4, 1)
+font_size = 64
+script = ExtResource("1_7u6dv")
