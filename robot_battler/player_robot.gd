@@ -2,16 +2,31 @@ extends CharacterBody3D
 
 @export var move_speed: float = 6.0
 
+@export_group("Melee")
+@export var melee_damage: float = 25.0
+@export var melee_range: float = 2.2
+@export var melee_cooldown: float = 0.5
+
+const MELEE_HITBOX_SCENE := preload("res://robot_battler/melee_hitbox.tscn")
+
 @onready var turret: Node3D = $Turret
+@onready var muzzle: Marker3D = $Turret/Muzzle
 @onready var camera: Camera3D = $Camera3D
 
 var aim_point: Vector3 = Vector3.ZERO
+var _melee_cooldown_remaining: float = 0.0
 
 
-func _physics_process(_delta: float) -> void:
+func _physics_process(delta: float) -> void:
+	_melee_cooldown_remaining = maxf(0.0, _melee_cooldown_remaining - delta)
 	_handle_movement()
 	_handle_aim()
 	move_and_slide()
+
+
+func _unhandled_input(event: InputEvent) -> void:
+	if event.is_action_pressed("attack"):
+		attack()
 
 
 func _handle_movement() -> void:
@@ -39,3 +54,17 @@ func _handle_aim() -> void:
 	var look_target := Vector3(aim_point.x, turret.global_position.y, aim_point.z)
 	if look_target.distance_to(turret.global_position) > 0.01:
 		turret.look_at(look_target, Vector3.UP)
+
+
+func attack() -> void:
+	_attack_melee()
+
+
+func _attack_melee() -> void:
+	if _melee_cooldown_remaining > 0.0:
+		return
+	_melee_cooldown_remaining = melee_cooldown
+	var hitbox := MELEE_HITBOX_SCENE.instantiate()
+	get_tree().current_scene.add_child(hitbox)
+	hitbox.global_transform = muzzle.global_transform
+	hitbox.setup(melee_damage, melee_range, self)

@@ -1,0 +1,15 @@
+[gd_scene format=3 uid="uid://4jovboay0osy"]
+
+[ext_resource type="Script" uid="uid://dbwvrabhcxqg3" path="res://robot_battler/melee_hitbox.gd" id="1_nk5lh"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nvgnq"]
+size = Vector3(1.6, 1.2, 1)
+
+[node name="MeleeHitbox" type="Area3D" unique_id=1046769974]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("1_nk5lh")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=723236953]
+shape = SubResource("BoxShape3D_nvgnq")

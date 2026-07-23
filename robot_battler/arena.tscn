@@ -110,6 +110,6 @@ transform = Transform3D(0.8660254, 0.38302222, -0.32139382, 0, 0.64278764, 0.766
 light_energy = 1.2
 
 [node name="DummyTarget1" parent="." unique_id=806824294 instance=ExtResource("1_5ikrm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -4)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
 
 [node name="PlayerRobot" parent="." unique_id=1586882751 instance=ExtResource("2_yfry8")]
