@@ -1,0 +1,28 @@
+[gd_scene format=3 uid="uid://c8otlx6stthhq"]
+
+[ext_resource type="Script" uid="uid://c2d3k5qsdworw" path="res://robot_battler/projectile.gd" id="1_tp1ma"]
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_sam0c"]
+radius = 0.15
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1avo6"]
+albedo_color = Color(1, 0.8, 0.2, 1)
+emission_enabled = true
+emission = Color(1, 0.8, 0.2, 1)
+
+[sub_resource type="SphereMesh" id="SphereMesh_ld6gx"]
+radius = 0.15
+height = 0.3
+
+[node name="Projectile" type="Area3D" unique_id=960225734]
+collision_layer = 0
+collision_mask = 4
+monitorable = false
+script = ExtResource("1_tp1ma")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=361306142]
+shape = SubResource("SphereShape3D_sam0c")
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=2102384635]
+material_override = SubResource("StandardMaterial3D_1avo6")
+mesh = SubResource("SphereMesh_ld6gx")

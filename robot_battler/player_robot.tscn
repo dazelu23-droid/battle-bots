@@ -49,3 +49,12 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1
 projection = 1
 current = true
 size = 16.0
+
+[node name="HUD" type="CanvasLayer" parent="." unique_id=735723225]
+
+[node name="WeaponLabel" type="Label" parent="HUD" unique_id=1374429027]
+offset_left = 16.0
+offset_top = 16.0
+offset_right = 17.0
+offset_bottom = 39.0
+text = "Weapon: Melee"
