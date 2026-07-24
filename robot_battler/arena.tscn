@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://dkn7l8l2g6tmr"]
 
-[ext_resource type="PackedScene" uid="uid://bg22ljljuwvav" path="res://robot_battler/dummy_target.tscn" id="1_5ikrm"]
 [ext_resource type="PackedScene" uid="uid://cosfync8gvnmx" path="res://robot_battler/player_robot.tscn" id="2_yfry8"]
+[ext_resource type="PackedScene" uid="uid://dy03xy8vltl7n" path="res://robot_battler/enemy_turret.tscn" id="3_y2frq"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6hmv2"]
 albedo_color = Color(0.2901961, 0.2901961, 0.30980393, 1)
@@ -109,16 +109,16 @@ shape = SubResource("BoxShape3D_2xojr")
 transform = Transform3D(0.8660254, 0.38302222, -0.32139382, 0, 0.64278764, 0.76604444, 0.5, -0.66341394, 0.5566704, 0, 10, 0)
 light_energy = 1.2
 
-[node name="DummyTarget1" parent="." unique_id=806824294 instance=ExtResource("1_5ikrm")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
-
 [node name="PlayerRobot" parent="." unique_id=1586882751 instance=ExtResource("2_yfry8")]
 
-[node name="DummyTarget2" parent="." unique_id=705823074 instance=ExtResource("1_5ikrm")]
+[node name="EnemyTurret1" parent="." unique_id=352385562 instance=ExtResource("3_y2frq")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+
+[node name="EnemyTurret2" parent="." unique_id=795139597 instance=ExtResource("3_y2frq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -6)
 
-[node name="DummyTarget3" parent="." unique_id=1765667809 instance=ExtResource("1_5ikrm")]
+[node name="EnemyTurret3" parent="." unique_id=1845934716 instance=ExtResource("3_y2frq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -10)
 
-[node name="DummyTarget4" parent="." unique_id=566851900 instance=ExtResource("1_5ikrm")]
+[node name="EnemyTurret4" parent="." unique_id=1318350559 instance=ExtResource("3_y2frq")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 3)
