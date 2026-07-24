@@ -259,3 +259,10 @@ offset_top = 16.0
 offset_right = 17.0
 offset_bottom = 39.0
 text = "Weapon: Melee"
+
+[node name="HPBar" type="ProgressBar" parent="HUD" unique_id=1150990459]
+offset_left = 16.0
+offset_top = 52.0
+offset_right = 216.0
+offset_bottom = 79.0
+value = 100.0

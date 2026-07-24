@@ -2,6 +2,7 @@ extends CharacterBody3D
 
 @export var move_speed: float = 6.0
 @export var turn_speed: float = 180.0
+@export var max_hp: float = 100.0
 
 @export_group("Melee")
 @export var melee_damage: float = 25.0
@@ -25,14 +26,21 @@ const PROJECTILE_SCENE := preload("res://robot_battler/projectile.tscn")
 @onready var weapon_label: Label = $HUD/WeaponLabel
 @onready var melee_weapon_model: MeshInstance3D = $Turret/TurretMesh
 @onready var ranged_weapon_model: Node3D = $Turret/RangedWeaponModel
+@onready var hp_bar: ProgressBar = $HUD/HPBar
 
 var current_weapon: Weapon = Weapon.MELEE
-
+var hp: float = 0.0
+var _spawn_point: Vector3 = Vector3.ZERO
 var _melee_cooldown_remaining: float = 0.0
 var _ranged_cooldown_remaining: float = 0.0
 
 
 func _ready() -> void:
+	add_to_group("player")
+	hp = max_hp
+	hp_bar.max_value = max_hp
+	_spawn_point = global_position
+	_update_hp_bar()
 	_update_weapon_display()
 	_update_camera()
 
@@ -111,3 +119,22 @@ func _update_weapon_display() -> void:
 	weapon_label.text = "Weapon: Melee" if is_melee else "Weapon: Ranged"
 	melee_weapon_model.visible = is_melee
 	ranged_weapon_model.visible = not is_melee
+
+
+func take_damage(amount: float) -> void:
+	hp = max(0.0, hp - amount)
+	_update_hp_bar()
+	if hp <= 0.0:
+		_respawn()
+
+
+func _respawn() -> void:
+	hp = max_hp
+	global_position = _spawn_point
+	_update_hp_bar()
+	for turret in get_tree().get_nodes_in_group("enemy_turret"):
+		turret.reset()
+
+
+func _update_hp_bar() -> void:
+	hp_bar.value = hp
