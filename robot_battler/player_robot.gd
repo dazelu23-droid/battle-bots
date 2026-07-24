@@ -22,6 +22,8 @@ const PROJECTILE_SCENE := preload("res://robot_battler/projectile.tscn")
 @onready var muzzle: Marker3D = $Turret/Muzzle
 @onready var camera: Camera3D = $Camera3D
 @onready var weapon_label: Label = $HUD/WeaponLabel
+@onready var melee_weapon_model: MeshInstance3D = $Turret/TurretMesh
+@onready var ranged_weapon_model: Node3D = $Turret/RangedWeaponModel
 
 var aim_point: Vector3 = Vector3.ZERO
 var current_weapon: Weapon = Weapon.MELEE
@@ -31,7 +33,7 @@ var _ranged_cooldown_remaining: float = 0.0
 
 
 func _ready() -> void:
-	_update_weapon_label()
+	_update_weapon_display()
 
 
 func _physics_process(delta: float) -> void:
@@ -82,7 +84,7 @@ func _handle_aim() -> void:
 
 func swap_weapon() -> void:
 	current_weapon = Weapon.RANGED if current_weapon == Weapon.MELEE else Weapon.MELEE
-	_update_weapon_label()
+	_update_weapon_display()
 
 
 func attack() -> void:
@@ -118,5 +120,8 @@ func _attack_ranged() -> void:
 	projectile.setup(direction, ranged_speed, ranged_damage, ranged_max_distance, self)
 
 
-func _update_weapon_label() -> void:
-	weapon_label.text = "Weapon: Melee" if current_weapon == Weapon.MELEE else "Weapon: Ranged"
+func _update_weapon_display() -> void:
+	var is_melee := current_weapon == Weapon.MELEE
+	weapon_label.text = "Weapon: Melee" if is_melee else "Weapon: Ranged"
+	melee_weapon_model.visible = is_melee
+	ranged_weapon_model.visible = not is_melee
