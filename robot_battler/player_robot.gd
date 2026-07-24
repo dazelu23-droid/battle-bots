@@ -1,6 +1,7 @@
 extends CharacterBody3D
 
 @export var move_speed: float = 6.0
+@export var turn_speed: float = 180.0
 
 @export_group("Melee")
 @export var melee_damage: float = 25.0
@@ -25,7 +26,6 @@ const PROJECTILE_SCENE := preload("res://robot_battler/projectile.tscn")
 @onready var melee_weapon_model: MeshInstance3D = $Turret/TurretMesh
 @onready var ranged_weapon_model: Node3D = $Turret/RangedWeaponModel
 
-var aim_point: Vector3 = Vector3.ZERO
 var current_weapon: Weapon = Weapon.MELEE
 
 var _melee_cooldown_remaining: float = 0.0
@@ -34,13 +34,15 @@ var _ranged_cooldown_remaining: float = 0.0
 
 func _ready() -> void:
 	_update_weapon_display()
+	_update_camera()
 
 
 func _physics_process(delta: float) -> void:
 	_update_cooldowns(delta)
+	_handle_rotation(delta)
 	_handle_movement()
-	_handle_aim()
 	move_and_slide()
+	_update_camera()
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -55,31 +57,20 @@ func _update_cooldowns(delta: float) -> void:
 	_ranged_cooldown_remaining = maxf(0.0, _ranged_cooldown_remaining - delta)
 
 
+func _handle_rotation(delta: float) -> void:
+	var turn_input := Input.get_action_strength("turn_right") - Input.get_action_strength("turn_left")
+	rotate_y(-turn_input * deg_to_rad(turn_speed) * delta)
+
+
 func _handle_movement() -> void:
-	var input_dir := Vector2(
-		Input.get_action_strength("move_right") - Input.get_action_strength("move_left"),
-		Input.get_action_strength("move_back") - Input.get_action_strength("move_forward")
-	)
-	var direction := Vector3(input_dir.x, 0.0, input_dir.y)
-	if direction.length() > 1.0:
-		direction = direction.normalized()
-	velocity.x = direction.x * move_speed
-	velocity.z = direction.z * move_speed
+	var move_input := Input.get_action_strength("move_forward") - Input.get_action_strength("move_back")
+	var forward := -global_transform.basis.z
+	velocity.x = forward.x * move_input * move_speed
+	velocity.z = forward.z * move_input * move_speed
 
 
-func _handle_aim() -> void:
-	var mouse_pos := get_viewport().get_mouse_position()
-	var ray_origin := camera.project_ray_origin(mouse_pos)
-	var ray_dir := camera.project_ray_normal(mouse_pos)
-	if absf(ray_dir.y) < 0.0001:
-		return
-	var t := -ray_origin.y / ray_dir.y
-	if t < 0.0:
-		return
-	aim_point = ray_origin + ray_dir * t
-	var look_target := Vector3(aim_point.x, turret.global_position.y, aim_point.z)
-	if look_target.distance_to(turret.global_position) > 0.01:
-		turret.look_at(look_target, Vector3.UP)
+func _update_camera() -> void:
+	camera.global_position = global_position + Vector3(0, 14, 0)
 
 
 func swap_weapon() -> void:
@@ -111,12 +102,7 @@ func _attack_ranged() -> void:
 	var projectile := PROJECTILE_SCENE.instantiate()
 	get_tree().current_scene.add_child(projectile)
 	projectile.global_transform = muzzle.global_transform
-	var direction := aim_point - muzzle.global_position
-	direction.y = 0.0
-	if direction.length() > 0.01:
-		direction = direction.normalized()
-	else:
-		direction = -muzzle.global_transform.basis.z
+	var direction := -muzzle.global_transform.basis.z
 	projectile.setup(direction, ranged_speed, ranged_damage, ranged_max_distance, self)
 
 
