@@ -1,0 +1,25 @@
+[gd_scene load_steps=2 format=3]
+
+[ext_resource type="Script" path="res://robot_battler/match_countdown.gd" id="1_count"]
+
+[node name="MatchCountdown" type="CanvasLayer"]
+process_mode = 3
+layer = 9
+script = ExtResource("1_count")
+
+[node name="Center" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="CountLabel" type="Label" parent="Center"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.941176, 0.94902, 0.960784, 1)
+theme_override_colors/font_outline_color = Color(0.101961, 0.113725, 0.141176, 1)
+theme_override_constants/outline_size = 12
+theme_override_font_sizes/font_size = 120
+text = "3"
+horizontal_alignment = 1

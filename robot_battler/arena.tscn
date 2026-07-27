@@ -2,9 +2,15 @@
 
 [ext_resource type="PackedScene" uid="uid://cosfync8gvnmx" path="res://robot_battler/player_robot.tscn" id="2_yfry8"]
 [ext_resource type="PackedScene" uid="uid://dy03xy8vltl7n" path="res://robot_battler/enemy_turret.tscn" id="3_y2frq"]
+[ext_resource type="PackedScene" path="res://robot_battler/pause_menu.tscn" id="4_pause"]
+[ext_resource type="PackedScene" path="res://robot_battler/match_countdown.tscn" id="5_count"]
+[ext_resource type="Script" uid="uid://cdrghxg7365wk" path="res://robot_battler/stage.gd" id="6_stage"]
+[ext_resource type="PackedScene" path="res://robot_battler/tree.tscn" id="7_tree"]
+[ext_resource type="PackedScene" path="res://robot_battler/grass_tuft.tscn" id="8_grass"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6hmv2"]
-albedo_color = Color(0.2901961, 0.2901961, 0.30980393, 1)
+albedo_color = Color(0.13, 0.32, 0.5, 1)
+roughness = 0.15
 
 [sub_resource type="BoxMesh" id="BoxMesh_5ikrm"]
 size = Vector3(40, 0.2, 40)
@@ -13,7 +19,7 @@ size = Vector3(40, 0.2, 40)
 size = Vector3(40, 0.2, 40)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y2frq"]
-albedo_color = Color(0.16862746, 0.16862746, 0.1882353, 1)
+albedo_color = Color(0.4, 0.36, 0.31, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_gimnn"]
 size = Vector3(41, 3, 1)
@@ -21,8 +27,14 @@ size = Vector3(41, 3, 1)
 [sub_resource type="BoxShape3D" id="BoxShape3D_nsb75"]
 size = Vector3(41, 3, 1)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grasscap"]
+albedo_color = Color(0.34, 0.53, 0.29, 1)
+
+[sub_resource type="BoxMesh" id="BoxMesh_cap_ns"]
+size = Vector3(41, 0.25, 1.2)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_bndse"]
-albedo_color = Color(0.16862746, 0.16862746, 0.1882353, 1)
+albedo_color = Color(0.4, 0.36, 0.31, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_phhs5"]
 size = Vector3(41, 3, 1)
@@ -31,7 +43,7 @@ size = Vector3(41, 3, 1)
 size = Vector3(41, 3, 1)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fwh5e"]
-albedo_color = Color(0.16862746, 0.16862746, 0.1882353, 1)
+albedo_color = Color(0.4, 0.36, 0.31, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_ge4v2"]
 size = Vector3(1, 3, 41)
@@ -39,8 +51,11 @@ size = Vector3(1, 3, 41)
 [sub_resource type="BoxShape3D" id="BoxShape3D_g5wf1"]
 size = Vector3(1, 3, 41)
 
+[sub_resource type="BoxMesh" id="BoxMesh_cap_ew"]
+size = Vector3(1.2, 0.25, 41)
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_7q114"]
-albedo_color = Color(0.16862746, 0.16862746, 0.1882353, 1)
+albedo_color = Color(0.4, 0.36, 0.31, 1)
 
 [sub_resource type="BoxMesh" id="BoxMesh_kwpvk"]
 size = Vector3(1, 3, 41)
@@ -48,7 +63,20 @@ size = Vector3(1, 3, 41)
 [sub_resource type="BoxShape3D" id="BoxShape3D_2xojr"]
 size = Vector3(1, 3, 41)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_island"]
+albedo_color = Color(0.79, 0.71, 0.53, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_island"]
+top_radius = 1.0
+bottom_radius = 1.6
+height = 0.5
+radial_segments = 32
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_island"]
+size = Vector3(3.5, 0.5, 14)
+
 [node name="Arena" type="Node3D" unique_id=909147313]
+script = ExtResource("6_stage")
 
 [node name="Floor" type="StaticBody3D" parent="." unique_id=1603103511]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
@@ -72,6 +100,11 @@ mesh = SubResource("BoxMesh_gimnn")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WallNorth" unique_id=1016286237]
 shape = SubResource("BoxShape3D_nsb75")
 
+[node name="GrassCap" type="MeshInstance3D" parent="WallNorth" unique_id=1961178369]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0)
+material_override = SubResource("StandardMaterial3D_grasscap")
+mesh = SubResource("BoxMesh_cap_ns")
+
 [node name="WallSouth" type="StaticBody3D" parent="." unique_id=1199444637]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.5, 20.5)
 collision_mask = 0
@@ -82,6 +115,11 @@ mesh = SubResource("BoxMesh_phhs5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WallSouth" unique_id=246564519]
 shape = SubResource("BoxShape3D_y62jr")
+
+[node name="GrassCap" type="MeshInstance3D" parent="WallSouth" unique_id=1881855178]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0)
+material_override = SubResource("StandardMaterial3D_grasscap")
+mesh = SubResource("BoxMesh_cap_ns")
 
 [node name="WallEast" type="StaticBody3D" parent="." unique_id=1732178279]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 20.5, 1.5, 0)
@@ -94,6 +132,11 @@ mesh = SubResource("BoxMesh_ge4v2")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WallEast" unique_id=710017060]
 shape = SubResource("BoxShape3D_g5wf1")
 
+[node name="GrassCap" type="MeshInstance3D" parent="WallEast" unique_id=1959141972]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0)
+material_override = SubResource("StandardMaterial3D_grasscap")
+mesh = SubResource("BoxMesh_cap_ew")
+
 [node name="WallWest" type="StaticBody3D" parent="." unique_id=194176829]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -20.5, 1.5, 0)
 collision_mask = 0
@@ -105,20 +148,99 @@ mesh = SubResource("BoxMesh_kwpvk")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="WallWest" unique_id=1919691866]
 shape = SubResource("BoxShape3D_2xojr")
 
+[node name="GrassCap" type="MeshInstance3D" parent="WallWest" unique_id=343939591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.55, 0)
+material_override = SubResource("StandardMaterial3D_grasscap")
+mesh = SubResource("BoxMesh_cap_ew")
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1296957427]
 transform = Transform3D(0.8660254, 0.38302222, -0.32139382, 0, 0.64278764, 0.76604444, 0.5, -0.66341394, 0.5566704, 0, 10, 0)
 light_energy = 1.2
 
 [node name="PlayerRobot" parent="." unique_id=1586882751 instance=ExtResource("2_yfry8")]
 
+[node name="IslandWest" type="StaticBody3D" parent="." unique_id=507752559 groups=["island"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 0)
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="IslandWest" unique_id=592907255]
+transform = Transform3D(1.75, 0, 0, 0, 1, 0, 0, 0, 7, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_island")
+mesh = SubResource("CylinderMesh_island")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IslandWest" unique_id=1970152220]
+shape = SubResource("BoxShape3D_island")
+
+[node name="Tree1" parent="IslandWest" unique_id=1778858097 instance=ExtResource("7_tree")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -0.3, 0.25, -6.2)
+
+[node name="Tree2" parent="IslandWest" unique_id=368181624 instance=ExtResource("7_tree")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.5, 0.25, 0.2)
+
+[node name="Tree3" parent="IslandWest" unique_id=1148586985 instance=ExtResource("7_tree")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, -0.2, 0.25, 6.3)
+
+[node name="Grass1" parent="IslandWest" unique_id=1235205696 instance=ExtResource("8_grass")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 0.25, -2.2)
+
+[node name="Grass2" parent="IslandWest" unique_id=1970740957 instance=ExtResource("8_grass")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -1, 0.25, 2.4)
+
+[node name="Grass3" parent="IslandWest" unique_id=627850493 instance=ExtResource("8_grass")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.9, 0.25, 5.2)
+
+[node name="Grass4" parent="IslandWest" unique_id=516999694 instance=ExtResource("8_grass")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0.25, -4.9)
+
+[node name="IslandEast" type="StaticBody3D" parent="." unique_id=1277102966 groups=["island"]]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 0)
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="IslandEast" unique_id=836284961]
+transform = Transform3D(1.75, 0, 0, 0, 1, 0, 0, 0, 7, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_island")
+mesh = SubResource("CylinderMesh_island")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="IslandEast" unique_id=1752606356]
+shape = SubResource("BoxShape3D_island")
+
+[node name="Tree1" parent="IslandEast" unique_id=235295366 instance=ExtResource("7_tree")]
+transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0.3, 0.25, -6.3)
+
+[node name="Tree2" parent="IslandEast" unique_id=6705491 instance=ExtResource("7_tree")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.5, 0.25, -0.1)
+
+[node name="Tree3" parent="IslandEast" unique_id=1509291190 instance=ExtResource("7_tree")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 0.2, 0.25, 6.2)
+
+[node name="Grass1" parent="IslandEast" unique_id=1245693599 instance=ExtResource("8_grass")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1, 0.25, -2.3)
+
+[node name="Grass2" parent="IslandEast" unique_id=1892812786 instance=ExtResource("8_grass")]
+transform = Transform3D(0.9, 0, 0, 0, 0.9, 0, 0, 0, 0.9, 1, 0.25, 2.2)
+
+[node name="Grass3" parent="IslandEast" unique_id=627482064 instance=ExtResource("8_grass")]
+transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -0.9, 0.25, 5.1)
+
+[node name="Grass4" parent="IslandEast" unique_id=721795291 instance=ExtResource("8_grass")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.1, 0.25, -4.8)
+
 [node name="EnemyTurret1" parent="." unique_id=352385562 instance=ExtResource("3_y2frq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -1.5)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, -4)
+use_own_island = false
 
 [node name="EnemyTurret2" parent="." unique_id=795139597 instance=ExtResource("3_y2frq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 0, -6)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -14, 0, 4)
+use_own_island = false
 
 [node name="EnemyTurret3" parent="." unique_id=1845934716 instance=ExtResource("3_y2frq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, -10)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, -4)
+use_own_island = false
 
 [node name="EnemyTurret4" parent="." unique_id=1318350559 instance=ExtResource("3_y2frq")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 9, 0, 3)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14, 0, 4)
+use_own_island = false
+
+[node name="PauseMenu" parent="." unique_id=640897566 instance=ExtResource("4_pause")]
+
+[node name="MatchCountdown" parent="." unique_id=1525865770 instance=ExtResource("5_count")]

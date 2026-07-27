@@ -1,0 +1,448 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://robot_battler/stage_select.gd" id="1_select"]
+
+[sub_resource type="StyleBoxFlat" id="preview_bg"]
+bg_color = Color(0.101961, 0.113725, 0.141176, 1)
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.203922, 0.231373, 0.290196, 1)
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="battle_normal"]
+bg_color = Color(0.247059, 0.498039, 0.74902, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="battle_hover"]
+bg_color = Color(0.298039, 0.552941, 0.796078, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="outline_normal"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.247059, 0.498039, 0.74902, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="outline_hover"]
+bg_color = Color(0.137255, 0.188235, 0.247059, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.298039, 0.552941, 0.796078, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="StageSelect" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_select")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101961, 0.113725, 0.141176, 1)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center"]
+layout_mode = 2
+theme_override_constants/separation = 8
+
+[node name="Title" type="Label" parent="Center/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.941176, 0.94902, 0.960784, 1)
+theme_override_font_sizes/font_size = 32
+text = "SELECT STAGE"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Center/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.541176, 0.576471, 0.647059, 1)
+theme_override_font_sizes/font_size = 13
+text = "CHOOSE YOUR ARENA"
+horizontal_alignment = 1
+
+[node name="SpacerA" type="Control" parent="Center/VBox"]
+custom_minimum_size = Vector2(0, 14)
+layout_mode = 2
+
+[node name="Cards" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 16
+
+[node name="HarborCard" type="Button" parent="Center/VBox/Cards"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(184, 204)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="Center/VBox/Cards/HarborCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center/VBox/Cards/HarborCard/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 4
+mouse_filter = 2
+
+[node name="Preview" type="Panel" parent="Center/VBox/Cards/HarborCard/Margin/VBox"]
+custom_minimum_size = Vector2(0, 84)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("preview_bg")
+
+[node name="IslandA" type="ColorRect" parent="Center/VBox/Cards/HarborCard/Margin/VBox/Preview"]
+layout_mode = 0
+offset_left = 22.0
+offset_top = 16.0
+offset_right = 36.0
+offset_bottom = 68.0
+mouse_filter = 2
+color = Color(0.79, 0.71, 0.53, 1)
+
+[node name="IslandB" type="ColorRect" parent="Center/VBox/Cards/HarborCard/Margin/VBox/Preview"]
+layout_mode = 0
+offset_left = 120.0
+offset_top = 16.0
+offset_right = 134.0
+offset_bottom = 68.0
+mouse_filter = 2
+color = Color(0.79, 0.71, 0.53, 1)
+
+[node name="Player" type="ColorRect" parent="Center/VBox/Cards/HarborCard/Margin/VBox/Preview"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 38.0
+offset_right = 86.0
+offset_bottom = 50.0
+mouse_filter = 2
+color = Color(0.247059, 0.498039, 0.74902, 1)
+
+[node name="T1" type="ColorRect" parent="Center/VBox/Cards/HarborCard/Margin/VBox/Preview"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 24.0
+offset_right = 33.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.698039, 0.270588, 0.231373, 1)
+
+[node name="T2" type="ColorRect" parent="Center/VBox/Cards/HarborCard/Margin/VBox/Preview"]
+layout_mode = 0
+offset_left = 25.0
+offset_top = 52.0
+offset_right = 33.0
+offset_bottom = 60.0
+mouse_filter = 2
+color = Color(0.698039, 0.270588, 0.231373, 1)
+
+[node name="T3" type="ColorRect" parent="Center/VBox/Cards/HarborCard/Margin/VBox/Preview"]
+layout_mode = 0
+offset_left = 123.0
+offset_top = 24.0
+offset_right = 131.0
+offset_bottom = 32.0
+mouse_filter = 2
+color = Color(0.698039, 0.270588, 0.231373, 1)
+
+[node name="T4" type="ColorRect" parent="Center/VBox/Cards/HarborCard/Margin/VBox/Preview"]
+layout_mode = 0
+offset_left = 123.0
+offset_top = 52.0
+offset_right = 131.0
+offset_bottom = 60.0
+mouse_filter = 2
+color = Color(0.698039, 0.270588, 0.231373, 1)
+
+[node name="Name" type="Label" parent="Center/VBox/Cards/HarborCard/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.913725, 0.94902, 0.980392, 1)
+theme_override_font_sizes/font_size = 15
+text = "The harbor"
+horizontal_alignment = 1
+
+[node name="Sub" type="Label" parent="Center/VBox/Cards/HarborCard/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.541176, 0.576471, 0.647059, 1)
+theme_override_font_sizes/font_size = 12
+text = "4 turrets · twin islands"
+horizontal_alignment = 1
+
+[node name="HarborStatus" type="Label" parent="Center/VBox/Cards/HarborCard/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_font_sizes/font_size = 11
+text = "SELECTED"
+horizontal_alignment = 1
+
+[node name="NarrowsCard" type="Button" parent="Center/VBox/Cards"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(184, 204)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="Center/VBox/Cards/NarrowsCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center/VBox/Cards/NarrowsCard/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 4
+mouse_filter = 2
+
+[node name="Preview" type="Panel" parent="Center/VBox/Cards/NarrowsCard/Margin/VBox"]
+custom_minimum_size = Vector2(0, 84)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("preview_bg")
+
+[node name="WallA" type="ColorRect" parent="Center/VBox/Cards/NarrowsCard/Margin/VBox/Preview"]
+layout_mode = 0
+offset_left = 52.0
+offset_top = 10.0
+offset_right = 60.0
+offset_bottom = 74.0
+mouse_filter = 2
+color = Color(0.203922, 0.231373, 0.290196, 1)
+
+[node name="WallB" type="ColorRect" parent="Center/VBox/Cards/NarrowsCard/Margin/VBox/Preview"]
+layout_mode = 0
+offset_left = 100.0
+offset_top = 10.0
+offset_right = 108.0
+offset_bottom = 74.0
+mouse_filter = 2
+color = Color(0.203922, 0.231373, 0.290196, 1)
+
+[node name="Player" type="ColorRect" parent="Center/VBox/Cards/NarrowsCard/Margin/VBox/Preview"]
+layout_mode = 0
+offset_left = 74.0
+offset_top = 62.0
+offset_right = 86.0
+offset_bottom = 74.0
+mouse_filter = 2
+color = Color(0.247059, 0.498039, 0.74902, 1)
+
+[node name="T1" type="ColorRect" parent="Center/VBox/Cards/NarrowsCard/Margin/VBox/Preview"]
+layout_mode = 0
+offset_left = 24.0
+offset_top = 36.0
+offset_right = 32.0
+offset_bottom = 44.0
+mouse_filter = 2
+color = Color(0.698039, 0.270588, 0.231373, 1)
+
+[node name="T2" type="ColorRect" parent="Center/VBox/Cards/NarrowsCard/Margin/VBox/Preview"]
+layout_mode = 0
+offset_left = 76.0
+offset_top = 14.0
+offset_right = 84.0
+offset_bottom = 22.0
+mouse_filter = 2
+color = Color(0.698039, 0.270588, 0.231373, 1)
+
+[node name="T3" type="ColorRect" parent="Center/VBox/Cards/NarrowsCard/Margin/VBox/Preview"]
+layout_mode = 0
+offset_left = 128.0
+offset_top = 36.0
+offset_right = 136.0
+offset_bottom = 44.0
+mouse_filter = 2
+color = Color(0.698039, 0.270588, 0.231373, 1)
+
+[node name="Name" type="Label" parent="Center/VBox/Cards/NarrowsCard/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.913725, 0.94902, 0.980392, 1)
+theme_override_font_sizes/font_size = 15
+text = "The narrows"
+horizontal_alignment = 1
+
+[node name="Sub" type="Label" parent="Center/VBox/Cards/NarrowsCard/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.541176, 0.576471, 0.647059, 1)
+theme_override_font_sizes/font_size = 12
+text = "3 turrets · wall channels"
+horizontal_alignment = 1
+
+[node name="NarrowsStatus" type="Label" parent="Center/VBox/Cards/NarrowsCard/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.541176, 0.576471, 0.647059, 1)
+theme_override_font_sizes/font_size = 11
+text = "AVAILABLE"
+horizontal_alignment = 1
+
+[node name="OpenWaterCard" type="Button" parent="Center/VBox/Cards"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(184, 204)
+layout_mode = 2
+
+[node name="Margin" type="MarginContainer" parent="Center/VBox/Cards/OpenWaterCard"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 12.0
+offset_top = 12.0
+offset_right = -12.0
+offset_bottom = -12.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center/VBox/Cards/OpenWaterCard/Margin"]
+layout_mode = 2
+theme_override_constants/separation = 4
+mouse_filter = 2
+
+[node name="Preview" type="Panel" parent="Center/VBox/Cards/OpenWaterCard/Margin/VBox"]
+custom_minimum_size = Vector2(0, 84)
+layout_mode = 2
+mouse_filter = 2
+theme_override_styles/panel = SubResource("preview_bg")
+
+[node name="LockLabel" type="Label" parent="Center/VBox/Cards/OpenWaterCard/Margin/VBox/Preview"]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_colors/font_color = Color(0.364706, 0.396078, 0.458824, 1)
+theme_override_font_sizes/font_size = 18
+text = "LOCKED"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Name" type="Label" parent="Center/VBox/Cards/OpenWaterCard/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.913725, 0.94902, 0.980392, 1)
+theme_override_font_sizes/font_size = 15
+text = "Open water"
+horizontal_alignment = 1
+
+[node name="Sub" type="Label" parent="Center/VBox/Cards/OpenWaterCard/Margin/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.541176, 0.576471, 0.647059, 1)
+theme_override_font_sizes/font_size = 12
+text = "6 turrets · no walls"
+horizontal_alignment = 1
+
+[node name="OpenWaterStatus" type="Label" parent="Center/VBox/Cards/OpenWaterCard/Margin/VBox"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.364706, 0.396078, 0.458824, 1)
+theme_override_font_sizes/font_size = 11
+text = "BEAT THE NARROWS"
+horizontal_alignment = 1
+
+[node name="SpacerB" type="Control" parent="Center/VBox"]
+custom_minimum_size = Vector2(0, 18)
+layout_mode = 2
+
+[node name="Buttons" type="HBoxContainer" parent="Center/VBox"]
+layout_mode = 2
+theme_override_constants/separation = 12
+alignment = 1
+
+[node name="BattleButton" type="Button" parent="Center/VBox/Buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(190, 46)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.913725, 0.94902, 0.980392, 1)
+theme_override_colors/font_hover_color = Color(0.913725, 0.94902, 0.980392, 1)
+theme_override_colors/font_pressed_color = Color(0.913725, 0.94902, 0.980392, 1)
+theme_override_colors/font_focus_color = Color(0.913725, 0.94902, 0.980392, 1)
+theme_override_font_sizes/font_size = 17
+theme_override_styles/normal = SubResource("battle_normal")
+theme_override_styles/hover = SubResource("battle_hover")
+theme_override_styles/pressed = SubResource("battle_normal")
+text = "Battle"
+
+[node name="BackButton" type="Button" parent="Center/VBox/Buttons"]
+custom_minimum_size = Vector2(120, 46)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_hover_color = Color(0.658824, 0.792157, 0.909804, 1)
+theme_override_colors/font_pressed_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_focus_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("outline_normal")
+theme_override_styles/hover = SubResource("outline_hover")
+theme_override_styles/pressed = SubResource("outline_normal")
+theme_override_styles/focus = SubResource("outline_hover")
+text = "Back"
+
+[node name="Hint" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -38.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.364706, 0.396078, 0.458824, 1)
+theme_override_font_sizes/font_size = 12
+text = "Click a stage to select it  ·  Battle to start"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Center/VBox/Cards/HarborCard" to="." method="_on_harbor_pressed"]
+[connection signal="pressed" from="Center/VBox/Cards/NarrowsCard" to="." method="_on_narrows_pressed"]
+[connection signal="pressed" from="Center/VBox/Cards/OpenWaterCard" to="." method="_on_open_water_pressed"]
+[connection signal="pressed" from="Center/VBox/Buttons/BattleButton" to="." method="_on_battle_pressed"]
+[connection signal="pressed" from="Center/VBox/Buttons/BackButton" to="." method="_on_back_pressed"]

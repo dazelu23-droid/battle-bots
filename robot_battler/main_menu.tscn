@@ -1,0 +1,390 @@
+[gd_scene format=3 uid="uid://7011027i0emo"]
+
+[ext_resource type="Script" path="res://robot_battler/main_menu.gd" id="1_menu"]
+
+[sub_resource type="StyleBoxFlat" id="floor_fill"]
+bg_color = Color(0.137255, 0.156863, 0.2, 1)
+corner_radius_top_left = 140
+corner_radius_top_right = 140
+corner_radius_bottom_right = 140
+corner_radius_bottom_left = 140
+
+[sub_resource type="StyleBoxFlat" id="floor_ring"]
+draw_center = false
+border_width_left = 2
+border_width_top = 2
+border_width_right = 2
+border_width_bottom = 2
+border_color = Color(0.203922, 0.231373, 0.290196, 1)
+corner_radius_top_left = 125
+corner_radius_top_right = 125
+corner_radius_bottom_right = 125
+corner_radius_bottom_left = 125
+
+[sub_resource type="StyleBoxFlat" id="robot_head"]
+bg_color = Color(0.247059, 0.498039, 0.74902, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="play_normal"]
+bg_color = Color(0.247059, 0.498039, 0.74902, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="play_hover"]
+bg_color = Color(0.298039, 0.552941, 0.796078, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="play_pressed"]
+bg_color = Color(0.207843, 0.423529, 0.643137, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="outline_normal"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.247059, 0.498039, 0.74902, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="outline_hover"]
+bg_color = Color(0.137255, 0.188235, 0.247059, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.298039, 0.552941, 0.796078, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="outline_disabled"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.247059, 0.498039, 0.74902, 0.35)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="MainMenu" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_menu")
+
+[node name="BG" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101961, 0.113725, 0.141176, 1)
+
+[node name="Floor" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -310.0
+offset_top = -140.0
+offset_right = 310.0
+offset_bottom = 140.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("floor_fill")
+
+[node name="FloorRing" type="Panel" parent="."]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -280.0
+offset_top = -125.0
+offset_right = 280.0
+offset_bottom = 125.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_styles/panel = SubResource("floor_ring")
+
+[node name="Dot1" type="ColorRect" parent="."]
+layout_mode = 1
+offset_left = 84.0
+offset_top = 64.0
+offset_right = 94.0
+offset_bottom = 74.0
+color = Color(0.203922, 0.231373, 0.290196, 1)
+
+[node name="Dot2" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -117.0
+offset_top = 96.0
+offset_right = -110.0
+offset_bottom = 103.0
+grow_horizontal = 0
+color = Color(0.203922, 0.231373, 0.290196, 1)
+
+[node name="Dot3" type="ColorRect" parent="."]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -79.0
+offset_top = 210.0
+offset_right = -70.0
+offset_bottom = 219.0
+grow_horizontal = 0
+color = Color(0.203922, 0.231373, 0.290196, 1)
+
+[node name="Dot4" type="ColorRect" parent="."]
+layout_mode = 1
+offset_left = 120.0
+offset_top = 230.0
+offset_right = 126.0
+offset_bottom = 236.0
+color = Color(0.203922, 0.231373, 0.290196, 1)
+
+[node name="Center" type="CenterContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="IconCenter" type="CenterContainer" parent="Center/VBox"]
+layout_mode = 2
+
+[node name="RobotIcon" type="Panel" parent="Center/VBox/IconCenter"]
+custom_minimum_size = Vector2(56, 44)
+layout_mode = 2
+theme_override_styles/panel = SubResource("robot_head")
+
+[node name="Antenna" type="ColorRect" parent="Center/VBox/IconCenter/RobotIcon"]
+layout_mode = 0
+offset_left = 26.0
+offset_top = -12.0
+offset_right = 30.0
+offset_bottom = 0.0
+color = Color(0.247059, 0.498039, 0.74902, 1)
+
+[node name="Eye1" type="ColorRect" parent="Center/VBox/IconCenter/RobotIcon"]
+layout_mode = 0
+offset_left = 13.0
+offset_top = 16.0
+offset_right = 21.0
+offset_bottom = 24.0
+color = Color(0.101961, 0.113725, 0.141176, 1)
+
+[node name="Eye2" type="ColorRect" parent="Center/VBox/IconCenter/RobotIcon"]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 16.0
+offset_right = 43.0
+offset_bottom = 24.0
+color = Color(0.101961, 0.113725, 0.141176, 1)
+
+[node name="Title" type="Label" parent="Center/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.941176, 0.94902, 0.960784, 1)
+theme_override_font_sizes/font_size = 40
+text = "BATTLE BOT"
+horizontal_alignment = 1
+
+[node name="Subtitle" type="Label" parent="Center/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.541176, 0.576471, 0.647059, 1)
+theme_override_font_sizes/font_size = 14
+text = "ARENA COMBAT"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Center/VBox"]
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+
+[node name="PlayButton" type="Button" parent="Center/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.913725, 0.94902, 0.980392, 1)
+theme_override_colors/font_hover_color = Color(0.913725, 0.94902, 0.980392, 1)
+theme_override_colors/font_pressed_color = Color(0.913725, 0.94902, 0.980392, 1)
+theme_override_colors/font_focus_color = Color(0.913725, 0.94902, 0.980392, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("play_normal")
+theme_override_styles/hover = SubResource("play_hover")
+theme_override_styles/pressed = SubResource("play_pressed")
+text = "Play"
+
+[node name="OptionsButton" type="Button" parent="Center/VBox"]
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_hover_color = Color(0.658824, 0.792157, 0.909804, 1)
+theme_override_colors/font_pressed_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_focus_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("outline_normal")
+theme_override_styles/hover = SubResource("outline_hover")
+theme_override_styles/pressed = SubResource("outline_normal")
+theme_override_styles/focus = SubResource("outline_hover")
+text = "Options"
+
+[node name="QuitButton" type="Button" parent="Center/VBox"]
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_hover_color = Color(0.658824, 0.792157, 0.909804, 1)
+theme_override_colors/font_pressed_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_focus_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("outline_normal")
+theme_override_styles/hover = SubResource("outline_hover")
+theme_override_styles/pressed = SubResource("outline_normal")
+theme_override_styles/focus = SubResource("outline_hover")
+text = "Quit"
+
+[node name="OptionsVBox" type="VBoxContainer" parent="Center"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="OptionsTitle" type="Label" parent="Center/OptionsVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.941176, 0.94902, 0.960784, 1)
+theme_override_font_sizes/font_size = 28
+text = "DIFFICULTY"
+horizontal_alignment = 1
+
+[node name="OptionsSubtitle" type="Label" parent="Center/OptionsVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.541176, 0.576471, 0.647059, 1)
+theme_override_font_sizes/font_size = 14
+text = "Medium is the normal game"
+horizontal_alignment = 1
+
+[node name="SpacerA" type="Control" parent="Center/OptionsVBox"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="EasyButton" type="Button" parent="Center/OptionsVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_hover_color = Color(0.658824, 0.792157, 0.909804, 1)
+theme_override_colors/font_pressed_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_focus_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("outline_normal")
+theme_override_styles/hover = SubResource("outline_hover")
+theme_override_styles/pressed = SubResource("outline_normal")
+theme_override_styles/focus = SubResource("outline_hover")
+text = "Easy"
+
+[node name="MediumButton" type="Button" parent="Center/OptionsVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_hover_color = Color(0.658824, 0.792157, 0.909804, 1)
+theme_override_colors/font_pressed_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_focus_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("outline_normal")
+theme_override_styles/hover = SubResource("outline_hover")
+theme_override_styles/pressed = SubResource("outline_normal")
+theme_override_styles/focus = SubResource("outline_hover")
+text = "Medium"
+
+[node name="HardButton" type="Button" parent="Center/OptionsVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_hover_color = Color(0.658824, 0.792157, 0.909804, 1)
+theme_override_colors/font_pressed_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_focus_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("outline_normal")
+theme_override_styles/hover = SubResource("outline_hover")
+theme_override_styles/pressed = SubResource("outline_normal")
+theme_override_styles/focus = SubResource("outline_hover")
+text = "Hard"
+
+[node name="SpacerB" type="Control" parent="Center/OptionsVBox"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="Center/OptionsVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_hover_color = Color(0.658824, 0.792157, 0.909804, 1)
+theme_override_colors/font_pressed_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_focus_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("outline_normal")
+theme_override_styles/hover = SubResource("outline_hover")
+theme_override_styles/pressed = SubResource("outline_normal")
+theme_override_styles/focus = SubResource("outline_hover")
+text = "Back"
+
+[node name="Hint" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -38.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.364706, 0.396078, 0.458824, 1)
+theme_override_font_sizes/font_size = 12
+text = "WASD to move  ·  Space to attack  ·  Q swap weapon  ·  E camera"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Center/VBox/PlayButton" to="." method="_on_play_pressed"]
+[connection signal="pressed" from="Center/VBox/OptionsButton" to="." method="_on_options_pressed"]
+[connection signal="pressed" from="Center/VBox/QuitButton" to="." method="_on_quit_pressed"]
+[connection signal="pressed" from="Center/OptionsVBox/EasyButton" to="." method="_on_easy_pressed"]
+[connection signal="pressed" from="Center/OptionsVBox/MediumButton" to="." method="_on_medium_pressed"]
+[connection signal="pressed" from="Center/OptionsVBox/HardButton" to="." method="_on_hard_pressed"]
+[connection signal="pressed" from="Center/OptionsVBox/BackButton" to="." method="_on_back_pressed"]

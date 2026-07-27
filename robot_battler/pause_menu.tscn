@@ -1,0 +1,121 @@
+[gd_scene load_steps=6 format=3]
+
+[ext_resource type="Script" path="res://robot_battler/pause_menu.gd" id="1_pause"]
+
+[sub_resource type="StyleBoxFlat" id="resume_normal"]
+bg_color = Color(0.247059, 0.498039, 0.74902, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="resume_hover"]
+bg_color = Color(0.298039, 0.552941, 0.796078, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="outline_normal"]
+bg_color = Color(0, 0, 0, 0)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.247059, 0.498039, 0.74902, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[sub_resource type="StyleBoxFlat" id="outline_hover"]
+bg_color = Color(0.137255, 0.188235, 0.247059, 1)
+border_width_left = 1
+border_width_top = 1
+border_width_right = 1
+border_width_bottom = 1
+border_color = Color(0.298039, 0.552941, 0.796078, 1)
+corner_radius_top_left = 8
+corner_radius_top_right = 8
+corner_radius_bottom_right = 8
+corner_radius_bottom_left = 8
+
+[node name="PauseMenu" type="CanvasLayer"]
+process_mode = 3
+layer = 10
+script = ExtResource("1_pause")
+
+[node name="Dim" type="ColorRect" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.101961, 0.113725, 0.141176, 0.6)
+
+[node name="Center" type="CenterContainer" parent="."]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="VBox" type="VBoxContainer" parent="Center"]
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Center/VBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.941176, 0.94902, 0.960784, 1)
+theme_override_font_sizes/font_size = 34
+text = "PAUSED"
+horizontal_alignment = 1
+
+[node name="Spacer" type="Control" parent="Center/VBox"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="ResumeButton" type="Button" parent="Center/VBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 48)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.913725, 0.94902, 0.980392, 1)
+theme_override_colors/font_hover_color = Color(0.913725, 0.94902, 0.980392, 1)
+theme_override_colors/font_pressed_color = Color(0.913725, 0.94902, 0.980392, 1)
+theme_override_colors/font_focus_color = Color(0.913725, 0.94902, 0.980392, 1)
+theme_override_font_sizes/font_size = 18
+theme_override_styles/normal = SubResource("resume_normal")
+theme_override_styles/hover = SubResource("resume_hover")
+theme_override_styles/pressed = SubResource("resume_normal")
+text = "Resume"
+
+[node name="MainMenuButton" type="Button" parent="Center/VBox"]
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_hover_color = Color(0.658824, 0.792157, 0.909804, 1)
+theme_override_colors/font_pressed_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_focus_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("outline_normal")
+theme_override_styles/hover = SubResource("outline_hover")
+theme_override_styles/pressed = SubResource("outline_normal")
+theme_override_styles/focus = SubResource("outline_hover")
+text = "Main menu"
+
+[node name="Hint" type="Label" parent="."]
+anchors_preset = 12
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -38.0
+offset_bottom = -14.0
+grow_horizontal = 2
+grow_vertical = 0
+theme_override_colors/font_color = Color(0.541176, 0.576471, 0.647059, 1)
+theme_override_font_sizes/font_size = 12
+text = "Enter to resume"
+horizontal_alignment = 1
+
+[connection signal="pressed" from="Center/VBox/ResumeButton" to="." method="_on_resume_pressed"]
+[connection signal="pressed" from="Center/VBox/MainMenuButton" to="." method="_on_main_menu_pressed"]

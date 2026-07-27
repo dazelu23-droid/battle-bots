@@ -3,11 +3,15 @@ extends CharacterBody3D
 @export var move_speed: float = 6.0
 @export var turn_speed: float = 180.0
 @export var max_hp: float = 100.0
+@export var camera_distance: float = 6.0
+@export var camera_height: float = 3.5
 
 @export_group("Melee")
 @export var melee_damage: float = 25.0
 @export var melee_range: float = 2.2
 @export var melee_cooldown: float = 0.5
+@export var ram_damage: float = 15.0
+@export var ram_cooldown: float = 0.3
 
 @export_group("Ranged")
 @export var ranged_damage: float = 10.0
@@ -24,15 +28,17 @@ const PROJECTILE_SCENE := preload("res://robot_battler/projectile.tscn")
 @onready var muzzle: Marker3D = $Turret/Muzzle
 @onready var camera: Camera3D = $Camera3D
 @onready var weapon_label: Label = $HUD/WeaponLabel
-@onready var melee_weapon_model: MeshInstance3D = $Turret/TurretMesh
+@onready var melee_weapon_model: Node3D = $Turret/SawBlade
 @onready var ranged_weapon_model: Node3D = $Turret/RangedWeaponModel
 @onready var hp_bar: ProgressBar = $HUD/HPBar
 
 var current_weapon: Weapon = Weapon.MELEE
+var _top_view: bool = false
 var hp: float = 0.0
 var _spawn_point: Vector3 = Vector3.ZERO
 var _melee_cooldown_remaining: float = 0.0
 var _ranged_cooldown_remaining: float = 0.0
+var _ram_cooldown_remaining: float = 0.0
 
 
 func _ready() -> void:
@@ -50,7 +56,12 @@ func _physics_process(delta: float) -> void:
 	_handle_rotation(delta)
 	_handle_movement()
 	move_and_slide()
+	_handle_ram_damage()
+	if global_position.y < -8.0:
+		take_damage(max_hp)
 	_update_camera()
+	if melee_weapon_model.visible:
+		melee_weapon_model.rotate_y(deg_to_rad(540.0) * delta)
 
 
 func _unhandled_input(event: InputEvent) -> void:
@@ -58,11 +69,46 @@ func _unhandled_input(event: InputEvent) -> void:
 		attack()
 	elif event.is_action_pressed("weapon_swap"):
 		swap_weapon()
+	elif event.is_action_pressed("toggle_view"):
+		toggle_view()
 
 
 func _update_cooldowns(delta: float) -> void:
 	_melee_cooldown_remaining = maxf(0.0, _melee_cooldown_remaining - delta)
 	_ranged_cooldown_remaining = maxf(0.0, _ranged_cooldown_remaining - delta)
+	_ram_cooldown_remaining = maxf(0.0, _ram_cooldown_remaining - delta)
+
+
+func _handle_ram_damage() -> void:
+	if current_weapon != Weapon.MELEE or _ram_cooldown_remaining > 0.0:
+		return
+	for i in get_slide_collision_count():
+		var collision := get_slide_collision(i)
+		var collider := collision.get_collider()
+		if collider == null:
+			continue
+		var turret: Node = null
+		if collider.is_in_group("enemy_turret"):
+			turret = collider
+		elif collider.is_in_group("island"):
+			turret = _nearest_living_turret(collision.get_position(), 3.0)
+		if turret != null and not turret.is_destroyed():
+			turret.take_damage(ram_damage)
+			_ram_cooldown_remaining = ram_cooldown
+			break
+
+
+func _nearest_living_turret(point: Vector3, max_distance: float) -> Node:
+	var nearest: Node = null
+	var best := max_distance
+	for turret in get_tree().get_nodes_in_group("enemy_turret"):
+		if turret.is_destroyed():
+			continue
+		var distance: float = turret.global_position.distance_to(point)
+		if distance < best:
+			best = distance
+			nearest = turret
+	return nearest
 
 
 func _handle_rotation(delta: float) -> void:
@@ -77,8 +123,24 @@ func _handle_movement() -> void:
 	velocity.z = forward.z * move_input * move_speed
 
 
+func toggle_view() -> void:
+	_top_view = not _top_view
+	if _top_view:
+		camera.projection = Camera3D.PROJECTION_ORTHOGONAL
+		camera.size = 16.0
+	else:
+		camera.projection = Camera3D.PROJECTION_PERSPECTIVE
+	_update_camera()
+
+
 func _update_camera() -> void:
-	camera.global_position = global_position + Vector3(0, 14, 0)
+	if _top_view:
+		camera.global_position = global_position + Vector3(0, 14, 0)
+		camera.rotation_degrees = Vector3(-90, 0, 0)
+	else:
+		var behind := global_transform.basis.z
+		camera.global_position = global_position + behind * camera_distance + Vector3(0, camera_height, 0)
+		camera.look_at(global_position + Vector3(0, 1.5, 0))
 
 
 func swap_weapon() -> void:
@@ -131,6 +193,7 @@ func take_damage(amount: float) -> void:
 func _respawn() -> void:
 	hp = max_hp
 	global_position = _spawn_point
+	velocity = Vector3.ZERO
 	_update_hp_bar()
 	for turret in get_tree().get_nodes_in_group("enemy_turret"):
 		turret.reset()

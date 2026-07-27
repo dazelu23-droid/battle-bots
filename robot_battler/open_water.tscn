@@ -1,0 +1,61 @@
+[gd_scene format=3]
+
+[ext_resource type="Script" path="res://robot_battler/stage.gd" id="1_stage"]
+[ext_resource type="PackedScene" uid="uid://cosfync8gvnmx" path="res://robot_battler/player_robot.tscn" id="2_player"]
+[ext_resource type="PackedScene" uid="uid://dy03xy8vltl7n" path="res://robot_battler/enemy_turret.tscn" id="3_turret"]
+[ext_resource type="PackedScene" path="res://robot_battler/pause_menu.tscn" id="4_pause"]
+[ext_resource type="PackedScene" path="res://robot_battler/match_countdown.tscn" id="5_count"]
+
+[sub_resource type="StandardMaterial3D" id="mat_floor"]
+albedo_color = Color(0.13, 0.32, 0.5, 1)
+roughness = 0.15
+
+[sub_resource type="BoxMesh" id="mesh_floor"]
+size = Vector3(40, 0.2, 40)
+
+[sub_resource type="BoxShape3D" id="shape_floor"]
+size = Vector3(40, 0.2, 40)
+
+[node name="OpenWater" type="Node3D"]
+script = ExtResource("1_stage")
+stage_id = "open_water"
+
+[node name="Floor" type="StaticBody3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.1, 0)
+collision_mask = 0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Floor"]
+material_override = SubResource("mat_floor")
+mesh = SubResource("mesh_floor")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Floor"]
+shape = SubResource("shape_floor")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.8660254, 0.38302222, -0.32139382, 0, 0.64278764, 0.76604444, 0.5, -0.66341394, 0.5566704, 0, 10, 0)
+light_energy = 1.2
+
+[node name="PlayerRobot" parent="." instance=ExtResource("2_player")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 16)
+
+[node name="EnemyTurret1" parent="." instance=ExtResource("3_turret")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -14)
+
+[node name="EnemyTurret2" parent="." instance=ExtResource("3_turret")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -12, 0, -4)
+
+[node name="EnemyTurret3" parent="." instance=ExtResource("3_turret")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12, 0, -4)
+
+[node name="EnemyTurret4" parent="." instance=ExtResource("3_turret")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8, 0, 8)
+
+[node name="EnemyTurret5" parent="." instance=ExtResource("3_turret")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 8, 0, 8)
+
+[node name="EnemyTurret6" parent="." instance=ExtResource("3_turret")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0)
+
+[node name="PauseMenu" parent="." instance=ExtResource("4_pause")]
+
+[node name="MatchCountdown" parent="." instance=ExtResource("5_count")]
