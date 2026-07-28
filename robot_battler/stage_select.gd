@@ -20,6 +20,7 @@ var _style_locked: StyleBoxFlat
 
 
 func _ready() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	_build_styles()
 	for i in STAGES.size():
 		if STAGES[i]["id"] == GameSettings.selected_stage:

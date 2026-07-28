@@ -75,6 +75,15 @@ radial_segments = 32
 [sub_resource type="BoxShape3D" id="BoxShape3D_island"]
 size = Vector3(3.5, 0.5, 14)
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grasssheet"]
+albedo_color = Color(0.34, 0.55, 0.29, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_grasssheet"]
+top_radius = 0.88
+bottom_radius = 0.94
+height = 0.06
+radial_segments = 32
+
 [node name="Arena" type="Node3D" unique_id=909147313]
 script = ExtResource("6_stage")
 
@@ -171,6 +180,11 @@ mesh = SubResource("CylinderMesh_island")
 [node name="CollisionShape3D" type="CollisionShape3D" parent="IslandWest" unique_id=1970152220]
 shape = SubResource("BoxShape3D_island")
 
+[node name="GrassSheet" type="MeshInstance3D" parent="IslandWest" unique_id=1856672626]
+transform = Transform3D(1.75, 0, 0, 0, 1, 0, 0, 0, 7, 0, 0.25, 0)
+material_override = SubResource("StandardMaterial3D_grasssheet")
+mesh = SubResource("CylinderMesh_grasssheet")
+
 [node name="Tree1" parent="IslandWest" unique_id=1778858097 instance=ExtResource("7_tree")]
 transform = Transform3D(1.1, 0, 0, 0, 1.1, 0, 0, 0, 1.1, -0.3, 0.25, -6.2)
 
@@ -203,6 +217,11 @@ mesh = SubResource("CylinderMesh_island")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="IslandEast" unique_id=1752606356]
 shape = SubResource("BoxShape3D_island")
+
+[node name="GrassSheet" type="MeshInstance3D" parent="IslandEast" unique_id=900791328]
+transform = Transform3D(1.75, 0, 0, 0, 1, 0, 0, 0, 7, 0, 0.25, 0)
+material_override = SubResource("StandardMaterial3D_grasssheet")
+mesh = SubResource("CylinderMesh_grasssheet")
 
 [node name="Tree1" parent="IslandEast" unique_id=235295366 instance=ExtResource("7_tree")]
 transform = Transform3D(1.2, 0, 0, 0, 1.2, 0, 0, 0, 1.2, 0.3, 0.25, -6.3)

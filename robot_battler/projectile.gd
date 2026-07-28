@@ -35,4 +35,6 @@ func _on_body_entered(body: Node) -> void:
 		return
 	if body.has_method("take_damage"):
 		body.take_damage(_damage)
+		if _attacker != null and _attacker.has_method("on_projectile_hit"):
+			_attacker.on_projectile_hit()
 	queue_free()

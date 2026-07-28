@@ -5,6 +5,7 @@ extends CharacterBody3D
 @export var max_hp: float = 100.0
 @export var camera_distance: float = 6.0
 @export var camera_height: float = 3.5
+@export var mouse_sensitivity: float = 0.15
 
 @export_group("Melee")
 @export var melee_damage: float = 25.0
@@ -33,7 +34,10 @@ const PROJECTILE_SCENE := preload("res://robot_battler/projectile.tscn")
 @onready var hp_bar: ProgressBar = $HUD/HPBar
 
 var current_weapon: Weapon = Weapon.MELEE
+var shots_fired: int = 0
+var shots_hit: int = 0
 var _top_view: bool = false
+var _dead: bool = false
 var hp: float = 0.0
 var _spawn_point: Vector3 = Vector3.ZERO
 var _melee_cooldown_remaining: float = 0.0
@@ -49,6 +53,7 @@ func _ready() -> void:
 	_update_hp_bar()
 	_update_weapon_display()
 	_update_camera()
+	_update_mouse_capture()
 
 
 func _physics_process(delta: float) -> void:
@@ -71,6 +76,35 @@ func _unhandled_input(event: InputEvent) -> void:
 		swap_weapon()
 	elif event.is_action_pressed("toggle_view"):
 		toggle_view()
+		_update_mouse_capture()
+	elif event is InputEventMouseMotion and Input.mouse_mode == Input.MOUSE_MODE_CAPTURED:
+		_apply_mouse_turn(event.relative.x)
+
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PAUSED:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	elif what == NOTIFICATION_UNPAUSED:
+		_update_mouse_capture()
+
+
+func _exit_tree() -> void:
+	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+
+func _update_mouse_capture() -> void:
+	if _should_capture_mouse():
+		Input.mouse_mode = Input.MOUSE_MODE_CAPTURED
+	else:
+		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+
+
+func _should_capture_mouse() -> bool:
+	return GameSettings.control_mode == GameSettings.ControlMode.MOUSE
+
+
+func _apply_mouse_turn(horizontal_motion: float) -> void:
+	rotate_y(-horizontal_motion * deg_to_rad(mouse_sensitivity))
 
 
 func _update_cooldowns(delta: float) -> void:
@@ -112,15 +146,41 @@ func _nearest_living_turret(point: Vector3, max_distance: float) -> Node:
 
 
 func _handle_rotation(delta: float) -> void:
+	if GameSettings.control_mode == GameSettings.ControlMode.MOUSE:
+		return
 	var turn_input := Input.get_action_strength("turn_right") - Input.get_action_strength("turn_left")
 	rotate_y(-turn_input * deg_to_rad(turn_speed) * delta)
 
 
 func _handle_movement() -> void:
+	if GameSettings.control_mode == GameSettings.ControlMode.MOUSE:
+		_handle_free_movement()
+		return
 	var move_input := Input.get_action_strength("move_forward") - Input.get_action_strength("move_back")
 	var forward := -global_transform.basis.z
 	velocity.x = forward.x * move_input * move_speed
 	velocity.z = forward.z * move_input * move_speed
+
+
+func _handle_free_movement() -> void:
+	var input := Input.get_vector("turn_left", "turn_right", "move_forward", "move_back")
+	var cam_basis := camera.global_transform.basis
+	var forward := -cam_basis.z
+	forward.y = 0.0
+	if forward.length() < 0.01:
+		forward = cam_basis.y
+		forward.y = 0.0
+	if forward.length() < 0.01:
+		forward = -global_transform.basis.z
+	forward = forward.normalized()
+	var right := cam_basis.x
+	right.y = 0.0
+	right = right.normalized() if right.length() > 0.01 else global_transform.basis.x
+	var move := right * input.x - forward * input.y
+	if move.length() > 1.0:
+		move = move.normalized()
+	velocity.x = move.x * move_speed
+	velocity.z = move.z * move_speed
 
 
 func toggle_view() -> void:
@@ -169,6 +229,7 @@ func _attack_ranged() -> void:
 	if _ranged_cooldown_remaining > 0.0:
 		return
 	_ranged_cooldown_remaining = ranged_cooldown
+	shots_fired += 1
 	var projectile := PROJECTILE_SCENE.instantiate()
 	get_tree().current_scene.add_child(projectile)
 	projectile.global_transform = muzzle.global_transform
@@ -183,20 +244,22 @@ func _update_weapon_display() -> void:
 	ranged_weapon_model.visible = not is_melee
 
 
+func on_projectile_hit() -> void:
+	shots_hit += 1
+
+
 func take_damage(amount: float) -> void:
+	if _dead:
+		return
 	hp = max(0.0, hp - amount)
 	_update_hp_bar()
 	if hp <= 0.0:
-		_respawn()
+		_die()
 
 
-func _respawn() -> void:
-	hp = max_hp
-	global_position = _spawn_point
-	velocity = Vector3.ZERO
-	_update_hp_bar()
-	for turret in get_tree().get_nodes_in_group("enemy_turret"):
-		turret.reset()
+func _die() -> void:
+	_dead = true
+	get_tree().call_group("stage_manager", "on_player_defeated")
 
 
 func _update_hp_bar() -> void:

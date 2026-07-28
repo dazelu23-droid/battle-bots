@@ -1,8 +1,10 @@
 extends Node
 
 enum Difficulty { EASY, MEDIUM, HARD }
+enum ControlMode { TANK, MOUSE }
 
 var difficulty: Difficulty = Difficulty.MEDIUM
+var control_mode: ControlMode = ControlMode.TANK
 var selected_stage: String = "harbor"
 var stages_beaten: Array[String] = []
 

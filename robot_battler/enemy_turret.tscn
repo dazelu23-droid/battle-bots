@@ -325,6 +325,14 @@ height = 0.5
 height = 0.5
 radius = 1.3
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_grasssheet"]
+albedo_color = Color(0.34, 0.55, 0.29, 1)
+
+[sub_resource type="CylinderMesh" id="CylinderMesh_grasssheet"]
+top_radius = 1.0
+bottom_radius = 1.08
+height = 0.06
+
 [node name="EnemyTurret" type="StaticBody3D" unique_id=352385562]
 collision_layer = 4
 collision_mask = 0
@@ -347,10 +355,10 @@ transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0
 material_override = SubResource("StandardMaterial3D_puj58")
 mesh = SubResource("QuadMesh_d6leo")
 
-[node name="Muzzle" type="Marker3D" parent="." unique_id=985261504]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.6)
-
 [node name="Model" type="Node3D" parent="." unique_id=1527014448]
+
+[node name="Muzzle" type="Marker3D" parent="Model" unique_id=985261504]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5, -0.6)
 
 [node name="TurretSingleGLB" parent="Model" unique_id=239891335 instance=ExtResource("2_dd4ky")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 0, -1.488815)
@@ -384,6 +392,11 @@ mesh = SubResource("CylinderMesh_island")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Island"]
 shape = SubResource("CylinderShape3D_island")
+
+[node name="GrassSheet" type="MeshInstance3D" parent="Island"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.25, 0)
+material_override = SubResource("StandardMaterial3D_grasssheet")
+mesh = SubResource("CylinderMesh_grasssheet")
 
 [node name="Tree" parent="Island" instance=ExtResource("3_tree")]
 transform = Transform3D(0.7, 0, 0, 0, 0.7, 0, 0, 0, 0.7, -0.85, 0.25, 0.4)

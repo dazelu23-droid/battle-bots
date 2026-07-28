@@ -12,7 +12,7 @@ const DAMAGE_NUMBER_SCENE := preload("res://robot_battler/damage_number.tscn")
 const ENEMY_PROJECTILE_SCENE := preload("res://robot_battler/enemy_projectile.tscn")
 
 @onready var model: Node3D = $Model
-@onready var muzzle: Marker3D = $Muzzle
+@onready var muzzle: Marker3D = $Model/Muzzle
 @onready var collision_shape: CollisionShape3D = $CollisionShape3D
 @onready var health_fill: MeshInstance3D = $HealthBar/Fill
 @onready var island: StaticBody3D = $Island
@@ -47,7 +47,7 @@ func _physics_process(delta: float) -> void:
 		return
 	var look_target := Vector3(player.global_position.x, global_position.y, player.global_position.z)
 	if look_target.distance_to(global_position) > 0.01:
-		look_at(look_target, Vector3.UP)
+		model.look_at(look_target, Vector3.UP)
 	_fire_cooldown_remaining -= delta
 	if _fire_cooldown_remaining <= 0.0 and _has_line_of_sight(player):
 		_fire_cooldown_remaining = fire_cooldown

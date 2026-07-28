@@ -278,31 +278,31 @@ theme_override_styles/pressed = SubResource("outline_normal")
 theme_override_styles/focus = SubResource("outline_hover")
 text = "Quit"
 
-[node name="OptionsVBox" type="VBoxContainer" parent="Center"]
+[node name="DifficultyVBox" type="VBoxContainer" parent="Center"]
 unique_name_in_owner = true
 visible = false
 layout_mode = 2
 theme_override_constants/separation = 12
 
-[node name="OptionsTitle" type="Label" parent="Center/OptionsVBox"]
+[node name="OptionsTitle" type="Label" parent="Center/DifficultyVBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.941176, 0.94902, 0.960784, 1)
 theme_override_font_sizes/font_size = 28
 text = "DIFFICULTY"
 horizontal_alignment = 1
 
-[node name="OptionsSubtitle" type="Label" parent="Center/OptionsVBox"]
+[node name="OptionsSubtitle" type="Label" parent="Center/DifficultyVBox"]
 layout_mode = 2
 theme_override_colors/font_color = Color(0.541176, 0.576471, 0.647059, 1)
 theme_override_font_sizes/font_size = 14
 text = "Medium is the normal game"
 horizontal_alignment = 1
 
-[node name="SpacerA" type="Control" parent="Center/OptionsVBox"]
+[node name="SpacerA" type="Control" parent="Center/DifficultyVBox"]
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
 
-[node name="EasyButton" type="Button" parent="Center/OptionsVBox"]
+[node name="EasyButton" type="Button" parent="Center/DifficultyVBox"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(220, 40)
 layout_mode = 2
@@ -317,7 +317,7 @@ theme_override_styles/pressed = SubResource("outline_normal")
 theme_override_styles/focus = SubResource("outline_hover")
 text = "Easy"
 
-[node name="MediumButton" type="Button" parent="Center/OptionsVBox"]
+[node name="MediumButton" type="Button" parent="Center/DifficultyVBox"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(220, 40)
 layout_mode = 2
@@ -332,7 +332,7 @@ theme_override_styles/pressed = SubResource("outline_normal")
 theme_override_styles/focus = SubResource("outline_hover")
 text = "Medium"
 
-[node name="HardButton" type="Button" parent="Center/OptionsVBox"]
+[node name="HardButton" type="Button" parent="Center/DifficultyVBox"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(220, 40)
 layout_mode = 2
@@ -347,11 +347,246 @@ theme_override_styles/pressed = SubResource("outline_normal")
 theme_override_styles/focus = SubResource("outline_hover")
 text = "Hard"
 
+[node name="SpacerB" type="Control" parent="Center/DifficultyVBox"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="BackButton" type="Button" parent="Center/DifficultyVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_hover_color = Color(0.658824, 0.792157, 0.909804, 1)
+theme_override_colors/font_pressed_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_focus_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("outline_normal")
+theme_override_styles/hover = SubResource("outline_hover")
+theme_override_styles/pressed = SubResource("outline_normal")
+theme_override_styles/focus = SubResource("outline_hover")
+text = "Back"
+
+[node name="OptionsVBox" type="VBoxContainer" parent="Center"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 12
+
+[node name="Title" type="Label" parent="Center/OptionsVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.941176, 0.94902, 0.960784, 1)
+theme_override_font_sizes/font_size = 28
+text = "OPTIONS"
+horizontal_alignment = 1
+
+[node name="SpacerA" type="Control" parent="Center/OptionsVBox"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="DifficultyButton" type="Button" parent="Center/OptionsVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_hover_color = Color(0.658824, 0.792157, 0.909804, 1)
+theme_override_colors/font_pressed_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_focus_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("outline_normal")
+theme_override_styles/hover = SubResource("outline_hover")
+theme_override_styles/pressed = SubResource("outline_normal")
+theme_override_styles/focus = SubResource("outline_hover")
+text = "Difficulty"
+
+[node name="ControlsButton" type="Button" parent="Center/OptionsVBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_hover_color = Color(0.658824, 0.792157, 0.909804, 1)
+theme_override_colors/font_pressed_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_focus_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("outline_normal")
+theme_override_styles/hover = SubResource("outline_hover")
+theme_override_styles/pressed = SubResource("outline_normal")
+theme_override_styles/focus = SubResource("outline_hover")
+text = "Controls"
+
 [node name="SpacerB" type="Control" parent="Center/OptionsVBox"]
 custom_minimum_size = Vector2(0, 12)
 layout_mode = 2
 
 [node name="BackButton" type="Button" parent="Center/OptionsVBox"]
+custom_minimum_size = Vector2(220, 40)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_hover_color = Color(0.658824, 0.792157, 0.909804, 1)
+theme_override_colors/font_pressed_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_focus_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_font_sizes/font_size = 15
+theme_override_styles/normal = SubResource("outline_normal")
+theme_override_styles/hover = SubResource("outline_hover")
+theme_override_styles/pressed = SubResource("outline_normal")
+theme_override_styles/focus = SubResource("outline_hover")
+text = "Back"
+
+[node name="ControlsVBox" type="VBoxContainer" parent="Center"]
+unique_name_in_owner = true
+visible = false
+layout_mode = 2
+theme_override_constants/separation = 10
+
+[node name="Title" type="Label" parent="Center/ControlsVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.941176, 0.94902, 0.960784, 1)
+theme_override_font_sizes/font_size = 28
+text = "CONTROLS"
+horizontal_alignment = 1
+
+[node name="SpacerA" type="Control" parent="Center/ControlsVBox"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="SteeringCaption" type="Label" parent="Center/ControlsVBox"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.541176, 0.576471, 0.647059, 1)
+theme_override_font_sizes/font_size = 12
+text = "STEERING"
+horizontal_alignment = 1
+
+[node name="ModeHBox" type="HBoxContainer" parent="Center/ControlsVBox"]
+layout_mode = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="TankModeButton" type="Button" parent="Center/ControlsVBox/ModeHBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(105, 36)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_hover_color = Color(0.658824, 0.792157, 0.909804, 1)
+theme_override_colors/font_pressed_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_focus_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("outline_normal")
+theme_override_styles/hover = SubResource("outline_hover")
+theme_override_styles/pressed = SubResource("outline_normal")
+theme_override_styles/focus = SubResource("outline_hover")
+text = "Keys"
+
+[node name="MouseModeButton" type="Button" parent="Center/ControlsVBox/ModeHBox"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(105, 36)
+layout_mode = 2
+theme_override_colors/font_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_hover_color = Color(0.658824, 0.792157, 0.909804, 1)
+theme_override_colors/font_pressed_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_colors/font_focus_color = Color(0.498039, 0.682353, 0.854902, 1)
+theme_override_font_sizes/font_size = 14
+theme_override_styles/normal = SubResource("outline_normal")
+theme_override_styles/hover = SubResource("outline_hover")
+theme_override_styles/pressed = SubResource("outline_normal")
+theme_override_styles/focus = SubResource("outline_hover")
+text = "Mouse"
+
+[node name="SpacerM" type="Control" parent="Center/ControlsVBox"]
+custom_minimum_size = Vector2(0, 8)
+layout_mode = 2
+
+[node name="Grid" type="GridContainer" parent="Center/ControlsVBox"]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 2
+theme_override_constants/h_separation = 28
+theme_override_constants/v_separation = 8
+
+[node name="MoveKey" type="Label" parent="Center/ControlsVBox/Grid"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.541176, 0.576471, 0.647059, 1)
+theme_override_font_sizes/font_size = 14
+text = "Move"
+horizontal_alignment = 2
+
+[node name="MoveVal" type="Label" parent="Center/ControlsVBox/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.913725, 0.94902, 0.980392, 1)
+theme_override_font_sizes/font_size = 14
+text = "W / S  or  Up / Down"
+
+[node name="TurnKey" type="Label" parent="Center/ControlsVBox/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.541176, 0.576471, 0.647059, 1)
+theme_override_font_sizes/font_size = 14
+text = "Turn"
+horizontal_alignment = 2
+
+[node name="TurnVal" type="Label" parent="Center/ControlsVBox/Grid"]
+unique_name_in_owner = true
+layout_mode = 2
+theme_override_colors/font_color = Color(0.913725, 0.94902, 0.980392, 1)
+theme_override_font_sizes/font_size = 14
+text = "A / D  or  Left / Right"
+
+[node name="AttackKey" type="Label" parent="Center/ControlsVBox/Grid"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.541176, 0.576471, 0.647059, 1)
+theme_override_font_sizes/font_size = 14
+text = "Attack"
+horizontal_alignment = 2
+
+[node name="AttackVal" type="Label" parent="Center/ControlsVBox/Grid"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.913725, 0.94902, 0.980392, 1)
+theme_override_font_sizes/font_size = 14
+text = "Space  or  Left click"
+
+[node name="SwapKey" type="Label" parent="Center/ControlsVBox/Grid"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.541176, 0.576471, 0.647059, 1)
+theme_override_font_sizes/font_size = 14
+text = "Swap weapon"
+horizontal_alignment = 2
+
+[node name="SwapVal" type="Label" parent="Center/ControlsVBox/Grid"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.913725, 0.94902, 0.980392, 1)
+theme_override_font_sizes/font_size = 14
+text = "Q"
+
+[node name="CameraKey" type="Label" parent="Center/ControlsVBox/Grid"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.541176, 0.576471, 0.647059, 1)
+theme_override_font_sizes/font_size = 14
+text = "Camera view"
+horizontal_alignment = 2
+
+[node name="CameraVal" type="Label" parent="Center/ControlsVBox/Grid"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.913725, 0.94902, 0.980392, 1)
+theme_override_font_sizes/font_size = 14
+text = "E"
+
+[node name="PauseKey" type="Label" parent="Center/ControlsVBox/Grid"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.541176, 0.576471, 0.647059, 1)
+theme_override_font_sizes/font_size = 14
+text = "Pause"
+horizontal_alignment = 2
+
+[node name="PauseVal" type="Label" parent="Center/ControlsVBox/Grid"]
+layout_mode = 2
+theme_override_colors/font_color = Color(0.913725, 0.94902, 0.980392, 1)
+theme_override_font_sizes/font_size = 14
+text = "Enter"
+
+[node name="SpacerB" type="Control" parent="Center/ControlsVBox"]
+custom_minimum_size = Vector2(0, 12)
+layout_mode = 2
+
+[node name="ControlsBackButton" type="Button" parent="Center/ControlsVBox"]
 unique_name_in_owner = true
 custom_minimum_size = Vector2(220, 40)
 layout_mode = 2
@@ -384,7 +619,13 @@ horizontal_alignment = 1
 [connection signal="pressed" from="Center/VBox/PlayButton" to="." method="_on_play_pressed"]
 [connection signal="pressed" from="Center/VBox/OptionsButton" to="." method="_on_options_pressed"]
 [connection signal="pressed" from="Center/VBox/QuitButton" to="." method="_on_quit_pressed"]
-[connection signal="pressed" from="Center/OptionsVBox/EasyButton" to="." method="_on_easy_pressed"]
-[connection signal="pressed" from="Center/OptionsVBox/MediumButton" to="." method="_on_medium_pressed"]
-[connection signal="pressed" from="Center/OptionsVBox/HardButton" to="." method="_on_hard_pressed"]
-[connection signal="pressed" from="Center/OptionsVBox/BackButton" to="." method="_on_back_pressed"]
+[connection signal="pressed" from="Center/OptionsVBox/DifficultyButton" to="." method="_on_difficulty_open_pressed"]
+[connection signal="pressed" from="Center/OptionsVBox/ControlsButton" to="." method="_on_controls_pressed"]
+[connection signal="pressed" from="Center/OptionsVBox/BackButton" to="." method="_on_options_back_pressed"]
+[connection signal="pressed" from="Center/ControlsVBox/ModeHBox/TankModeButton" to="." method="_on_tank_mode_pressed"]
+[connection signal="pressed" from="Center/ControlsVBox/ModeHBox/MouseModeButton" to="." method="_on_mouse_mode_pressed"]
+[connection signal="pressed" from="Center/ControlsVBox/ControlsBackButton" to="." method="_on_controls_back_pressed"]
+[connection signal="pressed" from="Center/DifficultyVBox/EasyButton" to="." method="_on_easy_pressed"]
+[connection signal="pressed" from="Center/DifficultyVBox/MediumButton" to="." method="_on_medium_pressed"]
+[connection signal="pressed" from="Center/DifficultyVBox/HardButton" to="." method="_on_hard_pressed"]
+[connection signal="pressed" from="Center/DifficultyVBox/BackButton" to="." method="_on_back_pressed"]

@@ -2,6 +2,8 @@ extends CanvasLayer
 
 const MAIN_MENU_SCENE := "res://robot_battler/main_menu.tscn"
 const MatchCountdown := preload("res://robot_battler/match_countdown.gd")
+const DefeatScreen := preload("res://robot_battler/defeat_screen.gd")
+const VictoryScreen := preload("res://robot_battler/victory_screen.gd")
 
 @onready var resume_button: Button = %ResumeButton
 
@@ -13,7 +15,7 @@ func _ready() -> void:
 
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed("pause"):
-		if MatchCountdown.active:
+		if MatchCountdown.active or DefeatScreen.active or VictoryScreen.active:
 			return
 		_toggle_pause()
 		get_viewport().set_input_as_handled()
