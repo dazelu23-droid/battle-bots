@@ -10,7 +10,7 @@ config_version=5
 
 [application]
 
-config/name="battle bot"
+config/name="Battle Boats"
 run/main_scene="res://robot_battler/main_menu.tscn"
 config/features=PackedStringArray("4.7", "Forward Plus")
 config/icon="res://icon.svg"
